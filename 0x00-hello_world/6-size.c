@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+/**
+ * main - function prints size of variables depending on architecture
+ * (e.g. 32bits or 64bits)
+ * Return: return 0
+*/
 int	main(void)
 {
 	printf("Size of a char: %ld byte(s)\n", sizeof(char));
