@@ -12,10 +12,10 @@ unsigned long		fibonacci(unsigned long n)
 {
 	unsigned long	nb, oldnb, tmp;
 
-	nb = 1;
-	oldnb = 0;
+	nb = 2;
+	oldnb = 3;
 	if (!n)
-		return (0);
+		return (1);
 	while (n > 1)
 	{
 		tmp = nb + oldnb;
