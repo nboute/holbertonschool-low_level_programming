@@ -12,8 +12,8 @@ unsigned long		fibonacci(unsigned long n)
 {
 	unsigned long	nb, oldnb, tmp;
 
-	nb = 2;
-	oldnb = 3;
+	nb = 3;
+	oldnb = 2;
 	if (!n)
 		return (1);
 	while (n > 1)
