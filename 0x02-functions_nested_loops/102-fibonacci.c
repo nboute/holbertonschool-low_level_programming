@@ -10,11 +10,20 @@
 
 unsigned long		fibonacci(unsigned long n)
 {
+	unsigned long	nb, oldnb, tmp;
+
+	nb = 1;
+	oldnb = 0;
 	if (!n)
 		return (0);
-	if (n == 1 || n == 2)
-		return (1);
-	return (fibonacci(n - 1) + fibonacci(n - 2));
+	while (n > 1)
+	{
+		tmp = nb + oldnb;
+		oldnb = nb;
+		nb = tmp;
+		n--;
+	}
+	return (nb);
 }
 
 /**
