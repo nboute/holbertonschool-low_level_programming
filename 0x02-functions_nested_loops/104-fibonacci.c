@@ -35,8 +35,9 @@ unsigned long		fibonacci(unsigned long n)
 		n--;
 	}
 	if (nb_bil)
-		printf("%ld", nb_bil);
-	printf("%ld", nb);
+		printf("%ld%09ld", nb_bil, nb);
+	else
+		printf("%ld", nb);
 	return (nb);
 }
 
