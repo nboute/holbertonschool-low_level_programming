@@ -1,7 +1,7 @@
 /**
  * _isdigit - Checks if argument is a digit
  *
- * @c character to use for comparison
+ * @c: character to use for comparison
  *
  * Return: returns 1 if c is a digit, 0 if not
  */

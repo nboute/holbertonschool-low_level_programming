@@ -1,7 +1,7 @@
 /**
  * _isupper - Checks if argument is uppercase
  *
- * @c character to use for comparison
+ * @c: character to use for comparison
  *
  * Return: returns 1 if c is uppercase, 0 if not
  */

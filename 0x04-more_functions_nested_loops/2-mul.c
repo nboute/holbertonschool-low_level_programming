@@ -1,7 +1,7 @@
 /**
  * mul - multiplies two integers and returns the output
- * @a integer
- * @b integer
+ * @a: integer
+ * @b: integer
  * Return: returns output
  */
 
