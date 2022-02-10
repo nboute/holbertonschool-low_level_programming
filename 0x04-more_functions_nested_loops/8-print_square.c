@@ -1,0 +1,20 @@
+#include "main.h"
+
+/**
+ * print_square - prints square of # on terminal
+ *
+ * @size: size of square to print
+ */
+void	print_square(int size)
+{
+	int	i, j;
+
+	if (!size)
+		_putchar('\n');
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size; j++)
+			_putchar('#');
+		_putchar('\n');
+	}
+}
