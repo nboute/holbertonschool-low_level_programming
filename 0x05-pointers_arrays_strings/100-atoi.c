@@ -17,10 +17,14 @@ int	_atoi(char *s)
 			sign *= -1;
 		s++;
 	}
-	while (*s >= '0' && *s <= '9')
+	while (*s >= '0' && *s <= '9' && ((nb >= 0 && nb < 214748365)
+		|| (nb < 0 && nb > -214748365)))
 	{
-		nb = nb * 10 + (*s - '0');
+		if (sign == 1)
+			nb = nb * 10 + (*s - '0');
+		else if (sign == -1)
+			nb = nb * 10 - (*s - '0');
 		s++;
 	}
-	return (nb * sign);
+	return (nb);
 }
