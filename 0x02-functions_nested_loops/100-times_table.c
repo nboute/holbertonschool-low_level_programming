@@ -1,21 +1,6 @@
 #include "main.h"
 
 /**
- * print_n_digit - prints the n digit of a number
- *
- * @nb: number from which to print the digit
- * @index: index of the digit to print
- */
-
-void	print_n_digit(int nb, int index)
-{
-	if (index > 1)
-		print_n_digit(nb / 10, index - 1);
-	else
-		_putchar(nb % 10 + '0');
-}
-
-/**
  * put_nbr - prints given number
  *
  * @n: number to print
@@ -23,17 +8,24 @@ void	print_n_digit(int nb, int index)
 
 void	put_nbr(int n)
 {
-	int	nb_digits, tmp;
-
-	tmp = n;
-	nb_digits = 1;
-	while (tmp >= 10)
+	if (n == -2147483648)
 	{
-		tmp /= 10;
-		nb_digits++;
+		_putchar('-');
+		_putchar('2');
+		put_nbr(147483648);
 	}
-	while (nb_digits)
-		print_n_digit(n, nb_digits--);
+	else if (n < 0)
+	{
+		_putchar('-');
+		put_nbr(-n);
+	}
+	else if (n >= 10)
+	{
+		put_nbr(n / 10);
+		_putchar(n % 10 + '0');
+	}
+	else
+		_putchar(n % 10 + '0');
 }
 
 /**
