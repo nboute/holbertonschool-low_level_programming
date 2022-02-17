@@ -23,16 +23,16 @@ void	print_buffer(char *b, int size)
 	unsigned int	addr;
 
 	addr = 0;
+	if (size <= 0)
+		printf("\n");
 	while (size > 0)
 	{
 		printf("%08x: ", addr);
-		n = 0;
-		while (n < 10 && n < size)
+		for (n = 0; n < 10 && n < size; n++)
 		{
 			printf("%x%x", b[n] / 16, b[n] % 16);
 			if (n % 2)
 				printf(" ");
-			n++;
 		}
 		while (n < 10)
 		{
@@ -41,14 +41,12 @@ void	print_buffer(char *b, int size)
 				printf(" ");
 			n++;
 		}
-		n = 0;
-		while (n < 10 && n < size)
+		for (n = 0; n < 10 && n < size; n++)
 		{
 			if (_isprint(b[n]))
 				printf("%c", b[n]);
 			else
 				printf(".");
-			n++;
 		}
 		printf("\n");
 		size -= 10;
