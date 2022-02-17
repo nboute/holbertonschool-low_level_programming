@@ -8,9 +8,12 @@
  */
 void	replace(char *s, char a, char b, char c)
 {
-	while (*s++)
+	while (*s)
+	{
 		if (*s == a || *s == b)
 			*s = c;
+		s++;
+	}
 }
 
 /**
