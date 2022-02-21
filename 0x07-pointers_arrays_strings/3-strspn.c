@@ -1,3 +1,9 @@
+/**
+ * _strspn - counts characters in string matching with certain bytes
+ * @s: String to match
+ * @accept: Bytes used for comparison
+ * Return: number of matches until no match was found
+ */
 unsigned int	_strspn(char *s, char *accept)
 {
 	int	i, j;
