@@ -34,7 +34,7 @@ void	print_number(int n)
  * @av: array of arguments strings
  * Return: Always 0
  */
-int		main(int argc, char **av)
+int		main(int ac, char **av)
 {
 	(void)av;
 	print_number(argc);
