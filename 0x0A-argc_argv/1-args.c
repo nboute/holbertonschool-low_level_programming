@@ -28,6 +28,12 @@ void	print_number(int n)
 		_putchar(n % 10 + '0');
 }
 
+/**
+ * main - Prints number of arguments given to program
+ * @ac: number of arguments
+ * @av: array of arguments strings
+ * Return: Always 0
+ */
 int		main(int argc, char **av)
 {
 	(void)av;

@@ -2,8 +2,8 @@
 
 /**
  * main - Prints name of executable
- * @argc: number of arguments
- * @argv: array of arguments strings
+ * @ac: number of arguments
+ * @av: array of arguments strings
  * Return: Always 0
  */
 int		main(int ac, char **av)

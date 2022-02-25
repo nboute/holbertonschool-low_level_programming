@@ -1,5 +1,5 @@
-#include "main.h"
-
+# include "main.h"
+# include <stdlib.h>
 /**
  * print_number - prints number to stdout
  *
@@ -38,51 +38,39 @@ void	_puts(char *str)
 		_putchar(*str++);
 	_putchar('\n');
 }
-/**
- * _atoi - converts string into an integer
- * @s: string to convert
- * Return: integer format of string
- */
-
-int	_atoi(char *s)
-{
-	int	sign;
-	int	nb;
-
-	nb = 0;
-	sign = 1;
-	while (*s && (*s < '0' || *s > '9'))
-	{
-		if (*s == '-')
-			sign *= -1;
-		s++;
-	}
-	while (*s >= '0' && *s <= '9' && ((nb >= 0 && nb < 214748365)
-	|| (nb < 0 && nb > -214748365)))
-	{
-		if (sign == 1)
-			nb = nb * 10 + (*s - '0');
-		else if (sign == -1)
-			nb = nb * 10 - (*s - '0');
-		s++;
-	}
-	return (nb);
-}
 
 /**
- * main - Multiplies two arguments and prints result
+ * main - Prints minimum number of coins to give for change
  * @ac: number of arguments
  * @av: array of arguments strings
  * Return: Always 0
  */
-int	main(int ac, char **av)
+
+int		main(int ac, char **av)
 {
-	if (ac != 3)
+	int	nb, count;
+
+	count = 0;
+	if (ac != 2)
 	{
 		_puts("Error");
 		return (1);
 	}
-	print_number(_atoi(av[1]) * _atoi(av[2]));
+	nb = atoi(av[1]);
+	if (nb < 0)
+	{
+		_puts("0");
+		return (0);
+	}
+	count += nb / 25;
+	nb %= 25;
+	count += nb / 10;
+	nb %= 10;
+	count += nb / 5;
+	nb %= 5;
+	count += nb / 2;
+	count += nb % 2;
+	print_number(count);
 	_putchar('\n');
 	return (0);
 }

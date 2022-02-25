@@ -34,7 +34,7 @@ void	print_number(int n)
 void	_puts(char *str)
 {
 	while (*str)
-			_putchar(*str++);
+		_putchar(*str++);
 	_putchar('\n');
 }
 /**
@@ -67,6 +67,13 @@ int	_atoi(char *s)
 	}
 	return (nb);
 }
+
+/**
+ * main - Adds argument given to program and prints output
+ * @ac: number of arguments
+ * @av: array of arguments strings
+ * Return: Always 0
+ */
 
 int		main(int ac, char **av)
 {
