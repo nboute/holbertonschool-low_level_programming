@@ -1,0 +1,1 @@
+# Assignments on static libraries
