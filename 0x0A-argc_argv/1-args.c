@@ -37,7 +37,7 @@ void	print_number(int n)
 int		main(int ac, char **av)
 {
 	(void)av;
-	print_number(ac);
+	print_number(ac - 1);
 	_putchar('\n');
 	return (0);
 }
