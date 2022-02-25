@@ -20,7 +20,7 @@ void	_puts(char *str)
  */
 int		main(int ac, char **av)
 {
-	while (--ac)
-		_puts(*(++av));
+	while (ac--)
+		_puts(*(av++));
 	return (0);
 }
