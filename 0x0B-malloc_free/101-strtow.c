@@ -99,6 +99,8 @@ char	**strtow(char *str)
 		else if (is_word && str[i] == ' ')
 			is_word = 0;
 	}
+	if (!nb_words)
+		return (NULL);
 	tab = malloc(sizeof(char *) * (nb_words + 1));
 	if (!tab)
 		return (NULL);
