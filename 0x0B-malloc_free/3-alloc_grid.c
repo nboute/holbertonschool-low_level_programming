@@ -33,12 +33,17 @@ char	*_memset(char *s, char b, unsigned int n)
 		return (s);
 }
 
-void	*tabdel(int **tab, int size)
+/**
+ * tabdel - Frees two dimensional array assuming non void values are allocated
+ * @tab: Two-dimensional array
+ * @size: size of array
+ */
+void	tabdel(int **tab, int size)
 {
 	int	i;
 
 	if (!tab)
-		return (NULL);
+		return;
 	i = 0;
 	while (i < size)
 	{
@@ -47,7 +52,6 @@ void	*tabdel(int **tab, int size)
 		i++;
 	}
 	free(tab);
-	return (NULL);
 }
 
 /**
