@@ -66,7 +66,9 @@ char	*str_concat(char *s1, char *s2)
 	if (!str)
 		return (NULL);
 	*str = '\0';
-	_strcpy(str, s1);
-	_strcat(str, s2);
+	if (s1)
+		_strcpy(str, s1);
+	if (s2)
+		_strcat(str, s2);
 	return (str);
 }
