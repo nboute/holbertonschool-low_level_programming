@@ -82,13 +82,11 @@ char	*_strncpy(char *dest, char *src, int n)
  */
 char	**strtow(char *str)
 {
-	int	i, j, nb_words, is_word;
+	int	i, j, nb_words = 0, is_word = 0;
 	char	**tab;
 
 	if (!str || !*str)
 		return (NULL);
-	nb_words = 0;
-	is_word = 0;
 	for (i = 0; str[i]; i++)
 	{
 		if (!is_word && str[i] != ' ')
@@ -110,7 +108,7 @@ char	**strtow(char *str)
 		while (*str == ' ')
 			str++;
 		j = 0;
-		while (str[j] != ' ')
+		while (str[j] && str[j] != ' ')
 			j++;
 		tab[i] = malloc(j + 1);
 		if (!tab[i])
