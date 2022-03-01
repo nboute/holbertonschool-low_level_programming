@@ -40,6 +40,8 @@ char	*_strdup(char *str)
 	size_t	len;
 	char	*dup;
 
+	if (!str)
+		return (NULL);
 	len = _strlen(str);
 	dup = malloc(len + 1);
 	if (!dup)
