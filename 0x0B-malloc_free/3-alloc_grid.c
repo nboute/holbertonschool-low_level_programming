@@ -33,6 +33,23 @@ char	*_memset(char *s, char b, unsigned int n)
 		return (s);
 }
 
+void	*tabdel(int **tab, int size)
+{
+	int	i;
+
+	if (!tab)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		if (tab[i])
+			free(tab[i]);
+		i++;
+	}
+	free(tab);
+	return (NULL);
+}
+
 /**
  * alloc_grid - Allocates a two-dimensional array of integers
  * @width: width of array
@@ -47,14 +64,18 @@ int		**alloc_grid(int width, int height)
 	if (width <= 0 || height <= 0)
 		return (NULL);
 	tab = malloc(sizeof(int *) * height);
+	_memset((char*)tab, 0, sizeof(int *) * height);
 	if (!tab)
 		return (NULL);
 	for (i = 0; i < height; i++)
 	{
 		tab[i] = malloc(sizeof(int) * width);
 		if (!tab[i])
+		{
+			tabdel(tab, height);
 			return (NULL);
-		_memset((char *)tab[i], 0, width);
+		}
+		_memset((char *)tab[i], 0, width * sizeof(int));
 	}
 	return (tab);
 }
