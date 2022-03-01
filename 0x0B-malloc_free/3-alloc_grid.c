@@ -66,7 +66,7 @@ int		**alloc_grid(int width, int height)
 	tab = malloc(sizeof(int *) * height);
 	if (!tab)
 		return (NULL);
-	_memset((char*)tab, 0, sizeof(int *) * height);
+	_memset((char *)tab, 0, sizeof(int *) * height);
 	for (i = 0; i < height; i++)
 	{
 		tab[i] = malloc(sizeof(int) * width);
