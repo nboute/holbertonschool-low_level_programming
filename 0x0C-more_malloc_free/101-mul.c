@@ -240,7 +240,7 @@ int		main(int ac, char **av)
 		return (_error());
 	infinite_mul(av[1], av[2], result, temp, result2, size);
 	i = 0;
-	while (result[i] && result[i] == '0')
+	while (result[i] && result[i] == '0' && result[i + 1])
 		i++;
 	_puts(result + i);
 	free(result);
