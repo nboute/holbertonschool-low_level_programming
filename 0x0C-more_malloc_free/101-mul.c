@@ -120,7 +120,8 @@ int		main(int ac, char **av)
 	unsigned int	i, size;
 	char	*result;
 
-	(void)ac;
+	if (ac != 3)
+		return (_puts_error(1, NULL));
 	for (i = 0; av[1][i]; i++)
 		if (av[1][i] < '0' || av[1][i] > '9')
 			return (_puts_error(1, NULL));
@@ -134,13 +135,11 @@ int		main(int ac, char **av)
 		return (_puts_error(1, NULL));
 	size += i;
 	result = malloc((sizeof(*result) + 1) * size);
-	if (!result)
-		return (_puts_error(1, NULL));
 	for (i = 0; i < size; i++)
 		result[i] = '0';
 	result[i] = '\0';
 	if (!result)
 		return (_puts_error(1, NULL));
 	infinite_mul(av[1], av[2], result, size);
-	return (0);
+	return (98);
 }
