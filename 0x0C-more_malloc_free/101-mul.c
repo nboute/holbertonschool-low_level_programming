@@ -67,72 +67,6 @@ char	*reverse_buffer(char *r, int size)
 }
 
 /**
- * compute_buffer - computes preprocessed value in buffer
- * @r: buffer
- * @size_r: size of buffer
- * Return: 1 if overflow, 0 if not
- */
-int		compute_buffer(char *r, int size_r)
-{
-	int	k, tenth;
-
-	k = 0;
-	tenth = 0;
-	while (k < size_r && (r[k] || tenth))
-	{
-		if (tenth && !r[k])
-			r[k] = 2;
-		else if (tenth)
-			r[k]++;
-		tenth = 0;
-		if (r[k] >= 11)
-			tenth = 1;
-		if (r[k])
-			r[k] = (r[k] - 1) % 10 + '0';
-		k++;
-	}
-	reverse_buffer(r, k);
-	return (tenth);
-}
-
-/**
- * infinite_add - adds two numbers stored in strings together
- * @n1: first number's string
- * @n2: second number's string
- * @r: buffer to output result to
- * @size_r: size of buffer
- * Return: r
- */
-
-char	*infinite_add(char *n1, char *n2, char *r, int size_r)
-{
-	int	i, j, k;
-
-	for (i = 0; i < size_r; i++)
-		r[i] = 0;
-	for (i = 0; n1[i]; i++)
-		;
-	for (j = 0; n2[j]; j++)
-		;
-	k = 0;
-	while (i > 0 && k < size_r)
-		r[k++] = n1[--i] - '0' + 1;
-	k = 0;
-	while (j > 0 && k < size_r)
-	{
-		j--;
-		if (r[k])
-			r[k] = (r[k] + n2[j] - '0');
-		else
-			r[k] = n2[j] - '0' + 1;
-		k++;
-	}
-	if (compute_buffer(r, size_r))
-		return (0);
-	return (r);
-}
-
-/**
  * _error - prints error and returns error code
  * Return: Always 98
  */
@@ -154,9 +88,17 @@ void	_strset(char *str, size_t len, char c)
 		*str++ = c;
 }
 
-void	infinite_add_v3(char *sum, int nb, int index, int len)
+/**
+ * infinite_add - adds number to string of numbers
+ * @sum: String of numbers
+ * @nb: number to add
+ * @index: decimal place of number
+ * @len: length of sum string
+ */
+void	infinite_add(char *sum, int nb, int index, int len)
 {
 	int	tenth = 0;
+
 	sum[index] += nb % 10;
 	sum[index + 1] += nb / 10;
 	while (index < len)
@@ -175,8 +117,6 @@ void	infinite_add_v3(char *sum, int nb, int index, int len)
  * @n1: number 1
  * @n2: number 2
  * @sum: array to store result of multiplication
- * @temp: array to store temporary operations
- * @sum2: array to store current sum temporarily
  * @len: size of sum arrays
  */
 void	infinite_mul(char *n1, char *n2, char *sum, size_t len)
@@ -191,7 +131,7 @@ void	infinite_mul(char *n1, char *n2, char *sum, size_t len)
 		for (j = 0; n2[j]; j++)
 		{
 			nb = (n1[i] - '0') * (n2[j] - '0');
-			infinite_add_v3(sum, nb, i + j, len);
+			infinite_add(sum, nb, i + j, len);
 		}
 	}
 	reverse_buffer(sum, len);
