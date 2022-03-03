@@ -140,5 +140,7 @@ int		main(int ac, char **av)
 		result[i] = '0';
 	result[i] = '\0';
 	infinite_mul(av[1], av[2], result, size);
+	free(result);
+	result = NULL;
 	return (0);
 }
