@@ -128,7 +128,7 @@ int		main(int ac, char **av)
 	size = i;
 	if (!i)
 	{
-		_puts_error(0, "0");
+		_puts_error(1, NULL);
 		return (0);
 	}
 	for (i = 0; av[2][i]; i++)
@@ -136,7 +136,7 @@ int		main(int ac, char **av)
 			return (_puts_error(1, NULL));
 	if (!i)
 	{
-		_puts_error(0, "0");
+		_puts_error(1, NULL);
 		return (0);
 	}
 	size += i;
