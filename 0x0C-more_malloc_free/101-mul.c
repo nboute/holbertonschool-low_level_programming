@@ -120,8 +120,8 @@ int		main(int ac, char **av)
 	unsigned int	i, size;
 	char	*result;
 
-	if (ac != 3)
-		return (_puts_error(1, NULL));
+//	if (ac != 3)
+//		return (_puts_error(1, NULL));
 	for (i = 0; av[1][i]; i++)
 		if (av[1][i] < '0' || av[1][i] > '9')
 			return (_puts_error(1, NULL));
