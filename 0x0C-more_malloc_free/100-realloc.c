@@ -40,20 +40,25 @@ char *_memcpy(char *dest, char *src, unsigned int n)
 void	*_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	void	*reptr;
+	unsigned int	size;
 
-	if (new_size == old_size)
+	if (!ptr)
+		return (malloc(new_size));
+	else if (ptr && !new_size)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	else if (new_size == old_size)
 		return (ptr);
 	if (new_size)
 		reptr = malloc(new_size);
 	if (!reptr)
 		return (NULL);
-	if (old_size < new_size && ptr && new_size)
-		_memcpy(reptr, ptr, old_size);
-	else if (ptr && new_size)
-		_memcpy(reptr, ptr, new_size);
+	size = new_size > old_size ? old_size : new_size;
+	if (ptr && new_size)
+		_memcpy(reptr, ptr, size);
 	if (ptr)
 		free(ptr);
-	if (!new_size && ptr)
-		return (NULL);
 	return (reptr);
 }
