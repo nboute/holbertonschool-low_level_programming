@@ -1,6 +1,6 @@
-#include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
+#include "main.h"
+
 /**
  * _strlen - counts size of a string
  * @str: string to check size of
@@ -14,7 +14,6 @@ int	_strlen(char *str)
 		;
 	return (i);
 }
-
 
 /**
  * _strcpy - copy string's content into another
@@ -30,19 +29,6 @@ char	*_strcpy(char *dest, char *src)
 		dest[i] = src[i];
 	dest[i] = '\0';
 	return (dest);
-}
-
-
-/**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
 }
 
 /**
