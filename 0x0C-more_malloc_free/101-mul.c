@@ -127,18 +127,12 @@ int		main(int ac, char **av)
 			return (_puts_error(1, NULL));
 	size = i;
 	if (!i)
-	{
-		_puts_error(1, NULL);
-		return (0);
-	}
+		return (_puts_error(1, NULL));
 	for (i = 0; av[2][i]; i++)
 		if (av[2][i] < '0' || av[2][i] > '9')
 			return (_puts_error(1, NULL));
 	if (!i)
-	{
-		_puts_error(1, NULL);
-		return (0);
-	}
+		return (_puts_error(1, NULL));
 	size += i;
 	result = malloc((sizeof(*result) + 1) * size);
 	if (!result)
