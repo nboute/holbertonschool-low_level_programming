@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "main.h"
-
+#include <stdio.h>
 /**
  * _strlen - counts size of a string
  * @str: string to check size of
@@ -154,6 +154,22 @@ void	_strset(char *str, size_t len, char c)
 		*str++ = c;
 }
 
+void	infinite_add_v3(char *sum, int nb, int index, int len)
+{
+	int	tenth = 0;
+	sum[index] += nb % 10;
+	sum[index + 1] += nb / 10;
+	while (index < len)
+	{
+		sum[index] += tenth;
+		tenth = 0;
+		if (sum[index] > '9')
+			tenth = 1;
+		sum[index] = (sum[index] - '0') % 10 + '0';
+		index++;
+	}
+}
+
 /**
  * infinite_mul - multiplies two numbers in string format
  * @n1: number 1
@@ -163,8 +179,7 @@ void	_strset(char *str, size_t len, char c)
  * @sum2: array to store current sum temporarily
  * @len: size of sum arrays
  */
-void	infinite_mul(char *n1, char *n2, char *sum, char *temp, char *sum2,
-	size_t len)
+void	infinite_mul(char *n1, char *n2, char *sum, size_t len)
 {
 	int	i, j, nb;
 
@@ -175,14 +190,11 @@ void	infinite_mul(char *n1, char *n2, char *sum, char *temp, char *sum2,
 	{
 		for (j = 0; n2[j]; j++)
 		{
-			_strset(temp, len, '0');
 			nb = (n1[i] - '0') * (n2[j] - '0');
-			temp[len - 1 - (i + j)] = nb % 10 + '0';
-			temp[len - 1 - (i + j + 1)] = nb / 10 + '0';
-			_strcpy(sum2, sum);
-			infinite_add(sum2, temp, sum, len);
+			infinite_add_v3(sum, nb, i + j, len);
 		}
 	}
+	reverse_buffer(sum, len);
 }
 
 /**
@@ -213,7 +225,7 @@ char	*create_buffer(unsigned int size)
 int		main(int ac, char **av)
 {
 	unsigned int	i, size;
-	char	*result, *temp, *result2;
+	char	*result;
 
 	if (ac != 3)
 		return (_error());
@@ -222,29 +234,27 @@ int		main(int ac, char **av)
 			return (_error());
 	size = i;
 	if (!i)
-		return (_error());
+	{
+		_puts("0");
+		return (0);
+	}
 	for (i = 0; av[2][i]; i++)
 		if (av[2][i] < '0' || av[2][i] > '9')
 			return (_error());
 	if (!i)
-		return (_error());
+	{
+		_puts("0");
+		return (0);
+	}
 	size += i;
 	result = create_buffer(size);
 	if (!result)
 		return (_error());
-	result2 = create_buffer(size);
-	if (!result2)
-		return (_error());
-	temp = create_buffer(size);
-	if (!temp)
-		return (_error());
-	infinite_mul(av[1], av[2], result, temp, result2, size);
+	infinite_mul(av[1], av[2], result, size);
 	i = 0;
 	while (result[i] && result[i] == '0' && result[i + 1])
 		i++;
 	_puts(result + i);
 	free(result);
-	free(result2);
-	free(temp);
 	return (0);
 }
