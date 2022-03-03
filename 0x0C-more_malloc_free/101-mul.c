@@ -105,7 +105,6 @@ void	infinite_mul(char *n1, char *n2, char *sum, size_t len)
 	while (sum[i] && sum[i] == '0' && sum[i + 1])
 		i++;
 	_puts_error(0, sum + i);
-	free(sum);
 }
 
 
