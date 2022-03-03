@@ -41,7 +41,7 @@ int		_puts_error(int error, char *str)
 		_putchar('o');
 		_putchar('r');
 		_putchar('\n');
-		exit(98);
+		return (98);
 	}
 	while (*str)
 		_putchar(*str++);
@@ -136,10 +136,10 @@ int		main(int ac, char **av)
 	size += i;
 	result = malloc((sizeof(*result) + 1) * size);
 	if (!result)
-		return (1);
+		return (_puts_error(1, NULL));
 	for (i = 0; i < size; i++)
 		result[i] = '0';
 	result[i] = '\0';
 	infinite_mul(av[1], av[2], result, size);
-	return (98);
+	return (0);
 }
