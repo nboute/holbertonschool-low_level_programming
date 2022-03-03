@@ -1,46 +1,5 @@
 #include <stdlib.h>
 #include "main.h"
-#include <stdio.h>
-/**
- * _strlen - counts size of a string
- * @str: string to check size of
- * Return: returns size of str
- */
-int	_strlen(char *str)
-{
-	int	i;
-
-	for (i = 0; str[i]; i++)
-		;
-	return (i);
-}
-
-/**
- * _strcpy - copy string's content into another
- * @dest: string to copy into
- * @src: string to copy from
- * Return: returns string where content was pasted
- */
-char	*_strcpy(char *dest, char *src)
-{
-	int	i;
-
-	for (i = 0; src[i]; i++)
-		dest[i] = src[i];
-	dest[i] = '\0';
-	return (dest);
-}
-
-/**
- * _puts - prints string, followed by a newline
- * @str: string to print
- */
-void	_puts(char *str)
-{
-	while (*str)
-		_putchar(*str++);
-	_putchar('\n');
-}
 
 /**
  *	reverse_buffer - reverses buffer's value
@@ -67,25 +26,27 @@ char	*reverse_buffer(char *r, int size)
 }
 
 /**
- * _error - prints error and returns error code
- * Return: Always 98
+ * _puts_error - prints error or prints string depending on parameter
+ * @error: parameter to chose how to use function
+ * @str: string to print
+ * Return: 98 if error, 0 if not
  */
-int		_error(void)
+int		_puts_error(int error, char *str)
 {
-	_puts("Error");
-	return (98);
-}
-
-/**
- * _strset - sets array to given byte value
- * @str: array of chars
- * @len: length of array
- * @c: byte value to set array
- */
-void	_strset(char *str, size_t len, char c)
-{
-	while (len--)
-		*str++ = c;
+	if (error)
+	{
+		_putchar('E');
+		_putchar('r');
+		_putchar('r');
+		_putchar('o');
+		_putchar('r');
+		_putchar('\n');
+		return (98);
+	}
+	while (*str)
+		_putchar(*str++);
+	_putchar('\n');
+	return (0);
 }
 
 /**
@@ -123,9 +84,14 @@ void	infinite_mul(char *n1, char *n2, char *sum, size_t len)
 {
 	int	i, j, nb;
 
-	reverse_buffer(n1, _strlen(n1));
-	reverse_buffer(n2, _strlen(n2));
-	_strset(sum, len, '0');
+	for (i = 0; n1[i]; i++)
+		;
+	reverse_buffer(n1, i);
+	for (i = 0; n2[i]; i++)
+		;
+	reverse_buffer(n2, i);
+	for (i = 0; (size_t)i < len; i++)
+		sum[i] = '0';
 	for (i = 0; n1[i]; i++)
 	{
 		for (j = 0; n2[j]; j++)
@@ -135,26 +101,13 @@ void	infinite_mul(char *n1, char *n2, char *sum, size_t len)
 		}
 	}
 	reverse_buffer(sum, len);
+	i = 0;
+	while (sum[i] && sum[i] == '0' && sum[i + 1])
+		i++;
+	_puts_error(0, sum + i);
+	free(sum);
 }
 
-/**
- * create_buffer - creates a buffer of given size and initializes it
- * @size: size of buffer
- * Return: buffer
- */
-char	*create_buffer(unsigned int size)
-{
-	char	*ptr;
-	size_t	i;
-
-	ptr = malloc((sizeof(*ptr) + 1) * size);
-	if (!ptr)
-		return (NULL);
-	for (i = 0; i < size; i++)
-		ptr[i] = '0';
-	ptr[i] = '\0';
-	return (ptr);
-}
 
 /**
  * main - checks for error and prepares variable for multiplication
@@ -168,33 +121,33 @@ int		main(int ac, char **av)
 	char	*result;
 
 	if (ac != 3)
-		return (_error());
+		return (_puts_error(1, NULL));
 	for (i = 0; av[1][i]; i++)
 		if (av[1][i] < '0' || av[1][i] > '9')
-			return (_error());
+			return (_puts_error(1, NULL));
 	size = i;
 	if (!i)
 	{
-		_puts("0");
+		_puts_error(0, "0");
 		return (0);
 	}
 	for (i = 0; av[2][i]; i++)
 		if (av[2][i] < '0' || av[2][i] > '9')
-			return (_error());
+			return (_puts_error(1, NULL));
 	if (!i)
 	{
-		_puts("0");
+		_puts_error(0, "0");
 		return (0);
 	}
 	size += i;
-	result = create_buffer(size);
+	result = malloc((sizeof(*result) + 1) * size);
 	if (!result)
-		return (_error());
+		return (_puts_error(1, NULL));
+	for (i = 0; i < size; i++)
+		result[i] = '0';
+	result[i] = '\0';
+	if (!result)
+		return (_puts_error(1, NULL));
 	infinite_mul(av[1], av[2], result, size);
-	i = 0;
-	while (result[i] && result[i] == '0' && result[i + 1])
-		i++;
-	_puts(result + i);
-	free(result);
 	return (0);
 }
