@@ -5,7 +5,7 @@
  * struct dog - Information about a dog
  * @name: dog's name
  * @age: dog's age
- * @c: dog's owner's name;
+ * @owner: dog's owner's name;
  */
 
 typedef struct		dog

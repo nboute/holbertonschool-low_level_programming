@@ -24,6 +24,13 @@ char	*_strdup(char *str)
 	return (dup);
 }
 
+/**
+ * new_dog - Creates and allocates new struct dog_t
+ * @name: Name of new dog
+ * @age: Age of new dog
+ * @owner: Name of dog's owner
+ * Return: New dog
+ */
 dog_t	*new_dog(char *name, float age, char *owner)
 {
 	dog_t	*d;
