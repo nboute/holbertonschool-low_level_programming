@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 		return (98);
 	}
 	f = get_op_func(av[2]);
-	if (!f)
+	if (!f || strlen(av[2]) != 1)
 	{
 		printf("Error\n");
 		return (99);

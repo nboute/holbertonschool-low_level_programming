@@ -8,7 +8,7 @@
  */
 int		op_add(int a, int b)
 {
-	return ((int)((long)a + (long)b));
+	return (a + b);
 }
 
 /**
@@ -19,7 +19,7 @@ int		op_add(int a, int b)
  */
 int		op_sub(int a, int b)
 {
-	return ((int)((long)a - (long)b));
+	return (a - b);
 }
 
 /**
@@ -30,7 +30,7 @@ int		op_sub(int a, int b)
  */
 int		op_mul(int a, int b)
 {
-	return ((int)((long)a * (long)b));
+	return (a * b);
 }
 
 /**
@@ -41,16 +41,16 @@ int		op_mul(int a, int b)
  */
 int		op_div(int a, int b)
 {
-	return ((int)((long)a / (long)b));
+	return (a / b);
 }
 
 /**
- * op_mod - Calculates modulo between two numbers
+ * op_modulo - Calculates modulo between two numbers
  * @a: number 1
  * @b: number 2
  * Return: Result of operation
  */
 int		op_mod(int a, int b)
 {
-	return ((int)((long)a % (long)b));
+	return (a % b);
 }
