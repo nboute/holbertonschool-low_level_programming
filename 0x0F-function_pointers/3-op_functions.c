@@ -45,7 +45,7 @@ int		op_div(int a, int b)
 }
 
 /**
- * op_modulo - Calculates modulo between two numbers
+ * op_mod - Calculates modulo between two numbers
  * @a: number 1
  * @b: number 2
  * Return: Result of operation
