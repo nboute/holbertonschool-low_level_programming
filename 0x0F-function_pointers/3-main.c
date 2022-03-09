@@ -9,7 +9,7 @@
 int	main(int ac, char **av)
 {
 	int	nb1, nb2;
-	int (*f)(int, int);
+	int	(*f)(int, int);
 
 	if (ac != 4)
 	{
