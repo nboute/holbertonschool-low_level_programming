@@ -4,7 +4,7 @@
 #include <stdarg.h>
 
 /**
- * arg_t - struct linking letters to function pointers
+ * struct arg_s - struct linking letters to function pointers
  * @typeletter: letter
  * @fct: function pointer
  */
