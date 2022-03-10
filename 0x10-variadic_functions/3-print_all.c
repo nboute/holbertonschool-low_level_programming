@@ -7,7 +7,7 @@
  */
 void	print_char(va_list *args)
 {
-	printf("%c", (char)va_arg(*args, int));
+	printf("%c", va_arg(*args, int));
 }
 
 /**
@@ -25,7 +25,7 @@ void	print_int(va_list *args)
  */
 void	print_float(va_list *args)
 {
-	printf("%f", (float)va_arg(*args, double));
+	printf("%f", va_arg(*args, double));
 }
 
 /**
@@ -67,17 +67,17 @@ void	print_all(const char * const format, ...)
 	while (format[i])
 	{
 		j = 0;
-		printf("%s", sep);
 		while (functions[j].typeletter)
 		{
 			if (format[i] == functions[j].typeletter)
 			{
+				printf("%s", sep);
+				sep = ", ";
 				functions[j].fct(&args);
 				break;
 			}
 			j++;
 		}
-		sep = ", ";
 		i++;
 	}
 	printf("\n");
