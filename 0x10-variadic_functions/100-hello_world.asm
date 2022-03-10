@@ -1,5 +1,5 @@
 section .data
-msg: DB `Hello World\n`
+msg: DB `Hello, World\n`
 size: EQU $ - msg
 
 global main
