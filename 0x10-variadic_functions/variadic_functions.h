@@ -3,6 +3,12 @@
 
 #include <stdarg.h>
 
+/**
+ * arg_t - struct linking letters to function pointers
+ * @typeletter: letter
+ * @fct: function pointer
+ */
+
 typedef struct	arg_s
 {
 	char		typeletter;
