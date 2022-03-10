@@ -66,22 +66,18 @@ void	print_all(const char * const format, ...)
 	i = 0;
 	while (format[i])
 	{
-		if (format[i] == 'c' || format[i] == 'i' || format[i] == 'f'
-			|| format[i] == 's')
+		j = 0;
+		printf("%s", sep);
+		while (functions[j].typeletter)
 		{
-			j = 0;
-			printf("%s", sep);
-			while (functions[j].typeletter)
+			if (format[i] == functions[j].typeletter)
 			{
-				if (format[i] == functions[j].typeletter)
-				{
-					functions[j].fct(&args);
-					break;
-				}
-				j++;
+				functions[j].fct(&args);
+				break;
 			}
-			sep = ", ";
+			j++;
 		}
+		sep = ", ";
 		i++;
 	}
 	printf("\n");
