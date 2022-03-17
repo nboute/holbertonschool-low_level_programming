@@ -5,7 +5,7 @@
  * @str: string to check size of
  * Return: returns size of str
  */
-int	_strlen(char *str)
+int	_strlen(const char *str)
 {
 	int	i;
 
