@@ -30,8 +30,6 @@ size_t	print_listint_safe(const listint_t *head)
 	const listint_t	*ptr;
 
 	ptr = head;
-	if (!ptr)
-		return (98);
 	while (ptr && get_distance(head, ptr) == cur_len)
 	{
 		printf("[%p] %d\n", (void *)ptr, ptr->n);
