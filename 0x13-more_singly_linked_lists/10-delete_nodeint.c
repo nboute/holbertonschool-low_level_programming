@@ -20,12 +20,12 @@ int			delete_nodeint_at_index(listint_t **head, unsigned int index)
 	}
 	else
 	{
-		while (ptr && index)
+		while (ptr->next && index)
 		{
 			ptr = ptr->next;
 			index--;
 		}
-		if (ptr && !index && ptr->next)
+		if (!index && ptr->next)
 		{
 			tmp = ptr->next;
 			ptr->next = tmp->next;
