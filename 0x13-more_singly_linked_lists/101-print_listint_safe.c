@@ -1,52 +1,44 @@
 #include "lists.h"
 #include <stdio.h>
+
 /**
- * interval - checks if the linked list has not looped
- *
- * @begin: the begining of the list
- * @node: the current node
- * @i: the interval that should be at current position
- *
- * Return: 1 if interval is correct, 0 if there is a loop
+ * get_distance - Computes distance between two node of a linked list
+ * @start: Pointer to start of list
+ * @end: Pointer to end of list
+ * Return: Distance between nodes
  */
-
-size_t	interval(const listint_t *begin, const listint_t *node, size_t i)
+size_t	get_distance(const listint_t *start, const listint_t *end)
 {
-	size_t check = 0;
+	size_t	count = 0;
 
-	while (begin != node)
+	while (start != end)
 	{
-		begin = begin->next;
-		check++;
+		start = start->next;
+		count++;
 	}
-	return ((check == i) ? 1 : 0);
+	return (count);
 }
 
 /**
- * print_listint_safe - prints a listint_t linked list
- *
- * @head: the listint_t argument (head)
- *
- * Return: the number of nodes in the list
+ * print_listint_safe - Prints content of list, with failsafe for looped lists
+ * @head: Pointer to head of linked list
+ * Return: Size of linked list
  */
-
 size_t	print_listint_safe(const listint_t *head)
 {
-	size_t count = 0;
-	const listint_t *begin = head;
+	size_t			cur_len = 0;
+	const listint_t	*ptr;
 
-	if (head)
+	ptr = head;
+	if (!ptr)
+		return (98);
+	while (ptr && get_distance(head, ptr) == cur_len)
 	{
-		while (head && interval(begin, head, count))
-		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
-
-			count++;
-		}
-
-		if (head)
-			printf("-> [%p] %d\n", (void *)head, head->n);
+		printf("[%p] %d\n", (void *)ptr, ptr->n);
+		ptr = ptr->next;
+		cur_len++;
 	}
-	return (count);
+	if (ptr)
+		printf("-> [%p] %d\n", (void *)ptr, ptr->n);
+	return (cur_len);
 }
