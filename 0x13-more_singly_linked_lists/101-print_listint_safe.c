@@ -9,7 +9,7 @@
  */
 size_t	get_distance(const listint_t *start, const listint_t *end)
 {
-	size_t	count = 0;
+	size_t	count = 1;
 
 	while (start != end)
 	{
@@ -26,7 +26,7 @@ size_t	get_distance(const listint_t *start, const listint_t *end)
  */
 size_t	print_listint_safe(const listint_t *head)
 {
-	size_t			cur_len = 0, last_len = 0;
+	size_t			dist = 0, cur_len = 0;
 	const listint_t	*ptr;
 
 	ptr = head;
@@ -36,12 +36,12 @@ size_t	print_listint_safe(const listint_t *head)
 	{
 		printf("[%p] %d\n", (void *)ptr, ptr->n);
 		ptr = ptr->next;
-		last_len = cur_len;
-		cur_len = get_distance(head, ptr);
-		if (last_len >= cur_len)
+		cur_len++;
+		dist = get_distance(head, ptr);
+		if (cur_len > dist)
 		{
 			printf("-> [%p] %d\n", (void *)ptr, ptr->n);
-			return (98);
+			return (cur_len);
 		}
 	}
 	return (cur_len);
