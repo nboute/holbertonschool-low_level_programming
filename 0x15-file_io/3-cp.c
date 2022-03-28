@@ -36,7 +36,7 @@ int		copy_file(char *file_from, char *file_to)
 	fd1 = open(file_from, O_RDONLY);
 	if (fd1 < 0)
 		return (print_error(ERR_READ, file_from, 0));
-	fd2 = open(file_to, O_RDWR | O_CREAT, 0664);
+	fd2 = open(file_to, O_RDWR | O_CREAT | O_TRUNC, 0664);
 	if (fd2 < 0)
 		return (print_error(ERR_WRITE, file_to, 0));
 	while (ret > 0)
