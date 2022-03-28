@@ -13,11 +13,11 @@ int		print_error(error_t code, char *filename, int fd)
 	if (code == ERR_USAGE)
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 	else if (code == ERR_READ)
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s", filename);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
 	else if (code == ERR_WRITE)
-		dprintf(STDERR_FILENO, "Error: Can't write to file %s", filename);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
 	else if (code == ERR_CLOSE)
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 	return (code);
 }
 
