@@ -27,10 +27,9 @@ int		print_error(error_t code, char *filename, int fd)
  * @file_to: Name of file to copy to
  * Return: 0 if success, or a specific code if error
  */
-
 int		copy_file(char *file_from, char *file_to)
 {
-	int		ret = 1, wret, fd1 = 0, fd2 = 0;
+	int		ret, wret, fd1 = 0, fd2 = 0;
 	char	buff[1024];
 
 	fd1 = open(file_from, O_RDONLY);
@@ -39,11 +38,8 @@ int		copy_file(char *file_from, char *file_to)
 	fd2 = open(file_to, O_RDWR | O_CREAT | O_TRUNC, 0664);
 	if (fd2 < 0)
 		return (print_error(ERR_WRITE, file_to, 0));
-	while (ret > 0)
+	while ((ret = read(fd1, buff, 1024)) > 0)
 	{
-		ret = read(fd1, buff, 1024);
-		if (ret == -1)
-			return (print_error(ERR_READ, file_from, 0));
 		if (ret)
 		{
 			wret = write(fd2, buff, ret);
@@ -51,14 +47,14 @@ int		copy_file(char *file_from, char *file_to)
 				return (print_error(ERR_WRITE, file_to, 0));
 		}
 	}
+	if (ret == -1)
+		return (print_error(ERR_READ, file_from, 0));
 	ret = close(fd1);
 	wret = close(fd2);
 	if (ret)
-		print_error(ERR_CLOSE, NULL, fd1);
+		return (print_error(ERR_CLOSE, NULL, fd1));
 	if (wret)
-		print_error(ERR_CLOSE, NULL, fd2);
-	if (ret || wret)
-		return (100);
+		return (print_error(ERR_CLOSE, NULL, fd2));
 	return (0);
 }
 
