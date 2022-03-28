@@ -18,7 +18,7 @@ int		print_error(error_t code, char *filename, int fd)
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
 	else if (code == ERR_CLOSE)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
-	return (code);
+	exit(code);
 }
 
 /**
