@@ -8,7 +8,6 @@
  * @n: number of bytes to copy
  * Return: Destination buffer @dest
  */
-
 char *_memcpy(char *dest, char *src, unsigned int n)
 {
 	long	*ldest, *lsrc;
@@ -230,15 +229,15 @@ int		main(int ac, char **av)
 		return (print_error(ERR_ELF, av[1]));
 	header.class = buff[4];
 	_memcpy(header.magic, buff, 5);
+	if (header.class == 1 || header.class == 2)
+		ret = read(fd, buff, header.class == 1 ? 27 : 35);
 	if (header.class == 1)
 	{
-		ret = read(fd, buff, 27);
 		if (ret != 27)
 			return (print_error(ERR_READ, av[1]));
 	}
 	else if (header.class == 2)
 	{
-		ret = read(fd, buff, 35);
 		if (ret != 35)
 			return (print_error(ERR_READ, av[1]));
 	}
