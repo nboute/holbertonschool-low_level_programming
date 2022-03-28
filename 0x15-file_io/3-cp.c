@@ -52,11 +52,13 @@ int		copy_file(char *file_from, char *file_to)
 		}
 	}
 	ret = close(fd1);
+	wret = close(fd2);
 	if (ret)
-		return (print_error(ERR_CLOSE, NULL, fd1));
-	ret = close(fd2);
-	if (ret)
-		return (print_error(ERR_CLOSE, NULL, fd2));
+		print_error(ERR_CLOSE, NULL, fd1);
+	if (wret)
+		print_error(ERR_CLOSE, NULL, fd2);
+	if (ret || wret)
+		return (100);
 	return (0);
 }
 
