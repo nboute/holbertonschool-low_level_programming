@@ -33,27 +33,24 @@ int		copy_file(char *file_from, char *file_to)
 	char	buff[1024];
 
 	fd1 = open(file_from, O_RDONLY);
-	if (fd1 < 0)
+	if (fd1 == -1)
 		return (print_error(ERR_READ, file_from, 0));
 	fd2 = open(file_to, O_RDWR | O_CREAT | O_TRUNC, 0664);
-	if (fd2 < 0)
+	if (fd2 == -1)
 		return (print_error(ERR_WRITE, file_to, 0));
 	while ((ret = read(fd1, buff, 1024)) > 0)
 	{
-		if (ret)
-		{
-			wret = write(fd2, buff, ret);
-			if (wret != ret)
-				return (print_error(ERR_WRITE, file_to, 0));
-		}
+		wret = write(fd2, buff, ret);
+		if (wret != ret)
+			return (print_error(ERR_WRITE, file_to, 0));
 	}
 	if (ret == -1)
 		return (print_error(ERR_READ, file_from, 0));
 	ret = close(fd1);
-	wret = close(fd2);
 	if (ret)
 		return (print_error(ERR_CLOSE, NULL, fd1));
-	if (wret)
+	ret = close(fd2);
+	if (ret)
 		return (print_error(ERR_CLOSE, NULL, fd2));
 	return (0);
 }
