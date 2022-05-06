@@ -9,8 +9,8 @@
  */
 dlistint_t	*insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t	*new, *ptr, *tmp;
-	int			i;
+	dlistint_t		*new, *ptr;
+	unsigned int	i;
 
 	if (!h)
 		return (NULL);
