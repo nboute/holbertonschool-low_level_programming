@@ -34,7 +34,7 @@ int		hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	char	*key_dup;
 	char	*value_dup;
 
-	if (!key || !ht || !ht->size || !ht->array)
+	if (!key || !*key || !ht || !ht->size || !ht->array)
 		return (0);
 	index = key_index((const unsigned char *)key, ht->size);
 	key_dup = strdup(key);
