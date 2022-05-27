@@ -68,8 +68,8 @@ shash_node_t	*add_shash_node(shash_table_t *ht, char *key, char *value,
 	node = (shash_node_t *)calloc(sizeof(*node), 1);
 	if (!node)
 		return (NULL);
-	node->next = ht->array[index];
-	ht->array[index] = NULL;
+	node->snext = ht->array[index];
+	ht->array[index] = node;
 	node->key = key;
 	node->value = value;
 	if (!ht->shead || strcmp(ht->shead->key, key) >= 0)
@@ -117,7 +117,7 @@ int				shash_table_set(shash_table_t *ht, const char *key,
 	node = ht->array[index];
 	while (node)
 	{
-		if ((!value && !node->value) || !strcmp(value, node->value))
+		if ((!value && !node->value) || !strcmp(key, node->key))
 		{
 			if (node->value)
 				free(node->value);
