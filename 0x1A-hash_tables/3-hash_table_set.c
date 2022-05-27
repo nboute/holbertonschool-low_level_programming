@@ -30,20 +30,33 @@ hash_node_t	*add_hash_node(hash_node_t **list, char *key, char *value)
  */
 int		hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	int		index;
-	char	*key_dup;
-	char	*value_dup;
+	int			index;
+	char		*key_dup;
+	char		*value_dup;
+	hash_node_t	*ptr;
 
 	if (!key || !*key || !ht || !ht->size || !ht->array)
 		return (0);
 	index = key_index((const unsigned char *)key, ht->size);
-	key_dup = strdup(key);
-	if (!key_dup)
-		return (0);
 	value_dup = strdup(value);
-	if (value && !value_dup)
+	if (!value_dup)
+		return (0);
+	ptr = ht->array[index];
+	while (ptr)
 	{
-		free(key_dup);
+		if (!strcmp(key, ptr->key))
+		{
+			if (ptr->value)
+				free(ptr->value);
+			ptr->value = value_dup;
+			return (1);
+		}
+		ptr = ptr->next;
+	}
+	key_dup = strdup(key);
+	if (key && !key_dup)
+	{
+		free(value_dup);
 		return (0);
 	}
 	if (!add_hash_node(&ht->array[index], key_dup, value_dup))
