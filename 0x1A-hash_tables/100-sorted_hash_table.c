@@ -68,7 +68,7 @@ shash_node_t	*add_shash_node(shash_table_t *ht, char *key, char *value,
 	node = (shash_node_t *)calloc(sizeof(*node), 1);
 	if (!node)
 		return (NULL);
-	node->snext = ht->array[index];
+	node->next = ht->array[index];
 	ht->array[index] = node;
 	node->key = key;
 	node->value = value;
