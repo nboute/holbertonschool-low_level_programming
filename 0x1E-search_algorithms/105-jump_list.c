@@ -44,6 +44,8 @@ listint_t	*jump_list(listint_t *list, size_t size, int value)
 		high = jump_pointer(list, jump);
 		if (high)
 			printf("Value checked at index [%lu] = [%d]\n", high->index, high->n);
+		if (list->index >= size - 1)
+			break;
 	}
 	printf("Value found between indexes [%lu] and [%lu]\n", list->index,
 		high->index);
