@@ -23,13 +23,13 @@ static int		my_bsearch(int *array, size_t low, size_t high, int value)
 		printf("%d", array[i]);
 	}
 	printf("\n");
-	i = low + (high - low) / 2;
+	i = (high + low) / 2;
 	if (array[i] > value)
 		return (my_bsearch(array, low, i - 1, value));
 	else if (array[i] < value)
 		return (my_bsearch(array, i + 1, high, value));
 	else if (i > 0 && array[i - 1] == value)
-		return (my_bsearch(array, i - 1, i - 1, value));
+		return (my_bsearch(array, low, i, value));
 	else
 		return (i);
 }
