@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 
-
 /**
  * jump_search - Search for a value in a sorted array using jump Search
  * @array: Array
